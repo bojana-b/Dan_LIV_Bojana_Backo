@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Dan_LIV_Bojana_Backo
@@ -23,6 +24,22 @@ namespace Dan_LIV_Bojana_Backo
             Tractor tractor2 = new Tractor(10.5, 2, "Pogon1", 2.0, 2000, "K4", "T4", Colors[random.Next(0, Colors.Length)], 4);
             Truck truck1 = new Truck(182.2, 2.02, 2, 2.0, 2000, "K5", "T5", Colors[random.Next(0, Colors.Length)], 5);
             Truck truck2 = new Truck(205.2, 2.32, 4, 1.6, 2073, "K6", "T6", Colors[random.Next(0, Colors.Length)], 6);
+
+            // Add Vehicle to collections
+            cars.Add(car1);
+            cars.Add(car2);
+            tractors.Push(tractor1);
+            tractors.Push(tractor2);
+            trucks.Enqueue(truck1);
+            trucks.Enqueue(truck2);
+
+            // The stopwatch counts down
+            Console.WriteLine("Stopwatch: ");
+            for (int i = 5; i >= 0; i--)
+            {
+                Console.WriteLine(i);
+                Thread.Sleep(1000);
+            }
 
             car1.Move();
             car2.Move();

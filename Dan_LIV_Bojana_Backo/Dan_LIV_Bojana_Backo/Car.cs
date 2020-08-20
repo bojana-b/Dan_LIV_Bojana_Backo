@@ -18,8 +18,16 @@ namespace Dan_LIV_Bojana_Backo
         public string Producer { get; set; }
         public int TrafficNumber { get; set; }
 
-        public Car() : base()
+        public Car(string registrationNumber, int doorNumber, int tankVolume, string transportType, string producer, int trafficNumber,
+            double engineDisplacement, int weight, string category, string engineType, string color, int engineNumber) 
+            : base(engineDisplacement, weight, category, engineType, color, engineNumber)
         {
+            RegistrationNumber = registrationNumber;
+            DoorNumber = doorNumber;
+            TankVolume = tankVolume;
+            TransportType = transportType;
+            Producer = producer;
+            TrafficNumber = trafficNumber;
         }
 
         public void Overpaint(string color, int trafficNumber)

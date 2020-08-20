@@ -18,6 +18,16 @@ namespace Dan_LIV_Bojana_Backo
         public string Color { get; set; }
         public int EngineNumber { get; set; }
 
+        protected MotorVehicle(double engineDisplacement, int weight, string category, string engineType, string color, int engineNumber)
+        {
+            EngineDisplacement = engineDisplacement;
+            Weight = weight;
+            Category = category;
+            EngineType = engineType;
+            Color = color;
+            EngineNumber = engineNumber;
+        }
+
         public virtual void Move()
         {
             Console.WriteLine("Go");

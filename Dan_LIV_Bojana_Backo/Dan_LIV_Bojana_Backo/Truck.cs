@@ -15,8 +15,13 @@ namespace Dan_LIV_Bojana_Backo
         public double Hight { get; set; }
         public int SeatNumber { get; set; }
 
-        public Truck() : base()
+        public Truck(double transportCapacity, double hight, int seatNumber,
+            double engineDisplacement, int weight, string category, string engineType, string color, int engineNumber) 
+            : base(engineDisplacement, weight, category, engineType, color, engineNumber)
         {
+            TransportCapacity = transportCapacity;
+            Hight = hight;
+            SeatNumber = seatNumber;
         }
 
         public void Load()

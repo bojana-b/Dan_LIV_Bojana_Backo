@@ -15,10 +15,13 @@ namespace Dan_LIV_Bojana_Backo
         public int Wheelbase { get; set; }
         public string Drive { get; set; }
 
-        private readonly string[] allDrive = { "A", "B", "C" };
-
-        public Tractor() : base()
+        public Tractor(double tireSize, int wheelbase, string drive,
+            double engineDisplacement, int weight, string category, string engineType, string color, int engineNumber) 
+            : base(engineDisplacement, weight, category, engineType, color, engineNumber)
         {
+            TireSize = tireSize;
+            Wheelbase = wheelbase;
+            Drive = drive;
         }
     }
 }

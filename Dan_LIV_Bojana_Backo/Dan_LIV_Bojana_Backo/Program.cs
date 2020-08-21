@@ -75,6 +75,7 @@ namespace Dan_LIV_Bojana_Backo
             // 10 seconds race until semaphore
             Thread.Sleep(10000);
 
+            Console.WriteLine("Race result:");
             carForRaice.Stop();
         }
         // Function for Fuel consuming

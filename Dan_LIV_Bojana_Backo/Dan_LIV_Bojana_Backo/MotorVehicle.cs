@@ -35,7 +35,7 @@ namespace Dan_LIV_Bojana_Backo
         }
         public virtual void Stop()
         {
-            Console.WriteLine(Thread.CurrentThread.Name + " Stop");
+            Console.WriteLine(Thread.CurrentThread.Name + " cross the finish line");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Dan_LIV_Bojana_Backo
@@ -30,11 +31,11 @@ namespace Dan_LIV_Bojana_Backo
 
         public virtual void Move()
         {
-            Console.WriteLine("Go");
+            Console.WriteLine(Thread.CurrentThread.Name + " Go");
         }
         public virtual void Stop()
         {
-            Console.WriteLine("Stop");
+            Console.WriteLine(Thread.CurrentThread.Name + " Stop");
         }
     }
 }

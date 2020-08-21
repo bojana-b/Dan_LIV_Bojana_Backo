@@ -16,6 +16,8 @@ namespace Dan_LIV_Bojana_Backo
         static Random random = new Random();
         static List<Thread> threads = new List<Thread>();
         static bool raceIsOver = false;
+        private static readonly object l = new object();
+        public static int winner = 0;
 
         static void Main(string[] args)
         {
@@ -46,10 +48,10 @@ namespace Dan_LIV_Bojana_Backo
                 Console.WriteLine(i);
                 Thread.Sleep(1000);
             }
-            Console.WriteLine("All cars are ready to start the raice: ");
+            Console.WriteLine("All cars are ready to start the raice: \n");
             for (int i = 0; i < cars.Count; i++)
             {
-                Console.WriteLine("{0} {1} is ready.",cars[i].Color, cars[i].Producer);
+                Console.WriteLine("{0} {1} is ready.\n",cars[i].Color, cars[i].Producer);
             }
 
             // Create threads for each car
@@ -68,26 +70,39 @@ namespace Dan_LIV_Bojana_Backo
         public static void RaceForFastestRedCar(Car carForRaice)
         {
             carForRaice.Move();
-            Thread thread1 = new Thread(() => Fuel(carForRaice));
+            Thread thread1 = new Thread(() => Fuel());
             thread1.IsBackground = true;
             thread1.Start();
 
             // 10 seconds race until semaphore
             Thread.Sleep(10000);
 
-            Console.WriteLine("Race result:");
-            carForRaice.Stop();
+            lock (l)
+            {
+                carForRaice.Stop();
+                if (winner == 0)
+                {
+                    Console.WriteLine("\n********************************************");
+                    Console.WriteLine(Thread.CurrentThread.Name + " has won the race.");
+                    Console.WriteLine("\n********************************************");
+                    winner = 1;
+                    raceIsOver = true;
+                }
+            }
         }
         // Function for Fuel consuming
-        public static void Fuel(Car raiceCar)
+        public static void Fuel()
         {
             while (!raceIsOver)
             {
                 for (int i = 0; i < cars.Count; i++)
                 {
-                    cars[i].TankVolume = cars[i].TankVolume - random.Next(1, 5);
+                    int rnd = random.Next(1, 5);
+                    cars[i].TankVolume = cars[i].TankVolume - rnd;
+                    Console.WriteLine(cars[i].Color + cars[i].Producer + " -" + rnd + " l fuel");
                 }
                 Thread.Sleep(1000);
+                Console.WriteLine();
             }
         }
     }
